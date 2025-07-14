@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClickWar - 4 Teams</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background: #222; color: #fff; }
+        .teams { display: flex; justify-content: center; gap: 2em; margin-top: 2em; }
+        .team {
+            padding: 2em;
+            border-radius: 1em;
+            min-width: 120px;
+            box-shadow: 0 0 10px #0005;
+            font-size: 1.2em;
+        }
+        .red { background: #e74c3c; }
+        .blue { background: #3498db; }
+        .green { background: #27ae60; }
+        .yellow { background: #f1c40f; color: #222; }
+        button { margin-top: 1em; padding: 1em 2em; font-size: 1em; border: none; border-radius: 0.5em; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>ClickWar - 4 Teams</h1>
+    <div class="teams">
+        <div class="team red">
+            <div>Red Team</div>
+            <div id="red-count">0</div>
+            <button onclick="sendClick('red')">Click!</button>
+        </div>
+        <div class="team blue">
+            <div>Blue Team</div>
+            <div id="blue-count">0</div>
+            <button onclick="sendClick('blue')">Click!</button>
+        </div>
+        <div class="team green">
+            <div>Green Team</div>
+            <div id="green-count">0</div>
+            <button onclick="sendClick('green')">Click!</button>
+        </div>
+        <div class="team yellow">
+            <div>Yellow Team</div>
+            <div id="yellow-count">0</div>
+            <button onclick="sendClick('yellow')">Click!</button>
+        </div>
+    </div>
+    <script>
+        async function sendClick(team) {
+            await fetch('/api/click', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ team })
+            });
+            updateCounts();
+        }
+        async function updateCounts() {
+            const res = await fetch('/api/counts');
+            const data = await res.json();
+            document.getElementById('red-count').textContent = data.red || 0;
+            document.getElementById('blue-count').textContent = data.blue || 0;
+            document.getElementById('green-count').textContent = data.green || 0;
+            document.getElementById('yellow-count').textContent = data.yellow || 0;
+        }
+        updateCounts();
+        setInterval(updateCounts, 2000);
+    </script>
+</body>
+</html>
