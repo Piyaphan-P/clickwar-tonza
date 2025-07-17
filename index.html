@@ -3,46 +3,288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClickWar - 4 Teams</title>
+    <title>BLACKPINK ClickWar ⚡</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background: #222; color: #fff; }
-        .teams { display: flex; justify-content: center; gap: 2em; margin-top: 2em; }
-        .team {
-            padding: 2em;
-            border-radius: 1em;
-            min-width: 120px;
-            box-shadow: 0 0 10px #0005;
-            font-size: 1.2em;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .red { background: #e74c3c; }
-        .blue { background: #3498db; }
-        .green { background: #27ae60; }
-        .yellow { background: #f1c40f; color: #222; }
-        button { margin-top: 1em; padding: 1em 2em; font-size: 1em; border: none; border-radius: 0.5em; cursor: pointer; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            text-align: center; 
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            color: #fff; 
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Animated background elements */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, #ff1493 0%, transparent 20%),
+                radial-gradient(circle at 80% 20%, #ff69b4 0%, transparent 20%),
+                radial-gradient(circle at 40% 80%, #ff1493 0%, transparent 20%);
+            opacity: 0.1;
+            animation: pulse 4s ease-in-out infinite alternate;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.1; }
+            100% { opacity: 0.2; }
+        }
+        
+        .header {
+            padding: 2em 0;
+            background: linear-gradient(90deg, #ff1493, #ff69b4, #ff1493);
+            margin-bottom: 3em;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(255, 20, 147, 0.3);
+        }
+        
+        .blackpink-logo {
+            width: 150px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff1493, #ff69b4);
+            display: inline-block;
+            border-radius: 10px;
+            line-height: 60px;
+            font-weight: 900;
+            font-size: 24px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 1em;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { box-shadow: 0 0 20px #ff1493; }
+            to { box-shadow: 0 0 30px #ff69b4, 0 0 40px #ff1493; }
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            font-weight: 900;
+            background: linear-gradient(45deg, #ff1493, #ff69b4, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.5em;
+        }
+        
+        .lisa-image {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff1493, #ff69b4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .teams { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2em; 
+            margin: 0 2em;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .team {
+            padding: 2.5em 2em;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 2px solid;
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .team::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .team:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .team:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .jennie { 
+            border-color: #ff1493;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.2), rgba(255, 20, 147, 0.05));
+        }
+        .jennie:hover { box-shadow: 0 20px 40px rgba(255, 20, 147, 0.4); }
+        
+        .lisa { 
+            border-color: #ff69b4;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(255, 105, 180, 0.05));
+        }
+        .lisa:hover { box-shadow: 0 20px 40px rgba(255, 105, 180, 0.4); }
+        
+        .rose { 
+            border-color: #ff6b9d;
+            background: linear-gradient(135deg, rgba(255, 107, 157, 0.2), rgba(255, 107, 157, 0.05));
+        }
+        .rose:hover { box-shadow: 0 20px 40px rgba(255, 107, 157, 0.4); }
+        
+        .jisoo { 
+            border-color: #c44569;
+            background: linear-gradient(135deg, rgba(196, 69, 105, 0.2), rgba(196, 69, 105, 0.05));
+        }
+        .jisoo:hover { box-shadow: 0 20px 40px rgba(196, 69, 105, 0.4); }
+        
+        .team-name {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-bottom: 0.5em;
+            background: linear-gradient(45deg, #ff1493, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .team-count {
+            font-size: 3em;
+            font-weight: 900;
+            margin: 0.5em 0;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .click-btn { 
+            margin-top: 1.5em; 
+            padding: 1em 2.5em; 
+            font-size: 1.1em; 
+            font-weight: 600;
+            border: none; 
+            border-radius: 50px; 
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff1493, #ff69b4);
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+        }
+        
+        .click-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .click-btn:hover::before {
+            left: 100%;
+        }
+        
+        .click-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 20, 147, 0.5);
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+        }
+        
+        .click-btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(255, 20, 147, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .teams {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1em;
+                margin: 0 1em;
+            }
+            
+            .team {
+                padding: 1.5em 1em;
+            }
+            
+            .lisa-image {
+                width: 60px;
+                height: 60px;
+                font-size: 18px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
     </style>
 </head>
 <body>
-    <h1>ClickWar - 4 Teams</h1>
+    <div class="header">
+        <div class="blackpink-logo">BLACKPINK</div>
+        <h1>ClickWar ⚡</h1>
+        <div class="lisa-image">LISA</div>
+    </div>
+    
     <div class="teams">
-        <div class="team red">
-            <div>Red Team</div>
-            <div id="red-count">0</div>
-            <button onclick="sendClick('red')">Click!</button>
+        <div class="team jennie">
+            <div class="team-name">💎 JENNIE</div>
+            <div class="team-count" id="red-count">0</div>
+            <button class="click-btn" onclick="sendClick('red')">CLICK FOR JENNIE! 💖</button>
         </div>
-        <div class="team blue">
-            <div>Blue Team</div>
-            <div id="blue-count">0</div>
-            <button onclick="sendClick('blue')">Click!</button>
+        <div class="team lisa">
+            <div class="team-name">🌟 LISA</div>
+            <div class="team-count" id="blue-count">0</div>
+            <button class="click-btn" onclick="sendClick('blue')">CLICK FOR LISA! 💕</button>
         </div>
-        <div class="team green">
-            <div>Green Team</div>
-            <div id="green-count">0</div>
-            <button onclick="sendClick('green')">Click!</button>
+        <div class="team rose">
+            <div class="team-name">🌹 ROSÉ</div>
+            <div class="team-count" id="green-count">0</div>
+            <button class="click-btn" onclick="sendClick('green')">CLICK FOR ROSÉ! 💗</button>
         </div>
-        <div class="team yellow">
-            <div>Yellow Team</div>
-            <div id="yellow-count">0</div>
-            <button onclick="sendClick('yellow')">Click!</button>
+        <div class="team jisoo">
+            <div class="team-name">✨ JISOO</div>
+            <div class="team-count" id="yellow-count">0</div>
+            <button class="click-btn" onclick="sendClick('yellow')">CLICK FOR JISOO! 💓</button>
         </div>
     </div>
     <script>
