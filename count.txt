@@ -1,4 +1,4 @@
 red=7
-blue=2
-green=2
+blue=3
+green=3
 yellow=0
