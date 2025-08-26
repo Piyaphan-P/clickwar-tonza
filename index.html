@@ -3,46 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ClickWar - 4 Teams</title>
+    <title>Trump vs Blackpink ClickWar</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background: #222; color: #fff; }
-        .teams { display: flex; justify-content: center; gap: 2em; margin-top: 2em; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            text-align: center; 
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b2d 50%, #1a1a1a 100%);
+            color: #fff; 
+            min-height: 100vh;
+        }
+        .header { margin: 2em 0; }
+        .trump-title { 
+            font-size: 2.5em; 
+            color: #ff69b4; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 0.5em;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            color: #ffb6c1;
+            font-style: italic;
+        }
+        .teams { display: flex; justify-content: center; gap: 2em; margin-top: 2em; flex-wrap: wrap; }
         .team {
             padding: 2em;
             border-radius: 1em;
-            min-width: 120px;
-            box-shadow: 0 0 10px #0005;
+            min-width: 140px;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
             font-size: 1.2em;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .red { background: #e74c3c; }
-        .blue { background: #3498db; }
-        .green { background: #27ae60; }
-        .yellow { background: #f1c40f; color: #222; }
-        button { margin-top: 1em; padding: 1em 2em; font-size: 1em; border: none; border-radius: 0.5em; cursor: pointer; }
+        .team:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(255, 105, 180, 0.5);
+        }
+        .pink1 { background: linear-gradient(135deg, #ff1493, #ff69b4); }
+        .pink2 { background: linear-gradient(135deg, #ff69b4, #ffb6c1); }
+        .pink3 { background: linear-gradient(135deg, #c71585, #ff1493); }
+        .trump { background: linear-gradient(135deg, #ffd700, #ff8c00); color: #000; font-weight: bold; }
+        .team-name { font-weight: bold; margin-bottom: 0.5em; }
+        .team-count { font-size: 2em; font-weight: bold; margin: 0.5em 0; }
+        button { 
+            margin-top: 1em; 
+            padding: 1em 2em; 
+            font-size: 1em; 
+            border: none; 
+            border-radius: 0.5em; 
+            cursor: pointer; 
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
-    <h1>ClickWar - 4 Teams</h1>
+    <div class="header">
+        <h1 class="trump-title">🇺🇸 TRUMP vs BLACKPINK CLICKWAR 💕</h1>
+        <p class="subtitle">"Make Clicks Great Again" meets K-Pop Power!</p>
+    </div>
     <div class="teams">
-        <div class="team red">
-            <div>Red Team</div>
-            <div id="red-count">0</div>
-            <button onclick="sendClick('red')">Click!</button>
+        <div class="team pink1">
+            <div class="team-name">💗 ROSÉ Team</div>
+            <div class="team-count" id="red-count">0</div>
+            <button onclick="sendClick('red')">Click for Rosé! 🌹</button>
         </div>
-        <div class="team blue">
-            <div>Blue Team</div>
-            <div id="blue-count">0</div>
-            <button onclick="sendClick('blue')">Click!</button>
+        <div class="team pink2">
+            <div class="team-name">💕 JENNIE Team</div>
+            <div class="team-count" id="blue-count">0</div>
+            <button onclick="sendClick('blue')">Click for Jennie! 👑</button>
         </div>
-        <div class="team green">
-            <div>Green Team</div>
-            <div id="green-count">0</div>
-            <button onclick="sendClick('green')">Click!</button>
+        <div class="team pink3">
+            <div class="team-name">💖 LISA Team</div>
+            <div class="team-count" id="green-count">0</div>
+            <button onclick="sendClick('green')">Click for Lisa! ✨</button>
         </div>
-        <div class="team yellow">
-            <div>Yellow Team</div>
-            <div id="yellow-count">0</div>
-            <button onclick="sendClick('yellow')">Click!</button>
+        <div class="team trump">
+            <div class="team-name">🇺🇸 TRUMP Team</div>
+            <div class="team-count" id="yellow-count">0</div>
+            <button onclick="sendClick('yellow')">Make America Click Again! 🦅</button>
         </div>
     </div>
     <script>
